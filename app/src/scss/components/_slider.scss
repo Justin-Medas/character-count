@@ -1,0 +1,22 @@
+////
+/// @group components
+/// Styles for Slider globals
+////
+
+// Hide navigation if swiper is not initialized
+.slider-navigation {
+  display: none;
+
+  .swiper-container-initialized & {
+    display: flex;
+  }
+}
+
+// If the slider is a list, we don't want list styles
+.swiper-wrapper {
+  list-style: none;
+
+  > li {
+    list-style: none;
+  }
+}

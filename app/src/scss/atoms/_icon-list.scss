@@ -1,0 +1,49 @@
+////
+/// @group atoms
+/// Icon list styles.
+////
+
+.icon-list {
+  display: block;
+
+  li:not(:first-child) {
+    @include global-spacing(2xsmall, margin-top);
+  }
+
+  li,
+  a {
+    display: block;
+    font-family: $sans-serif;
+  }
+
+  li {
+    position: relative;
+    padding-left: $spacing--small;
+  }
+
+  &__icon {
+    position: absolute;
+    left: 0;
+    top: rem-calc(2);
+  }
+  &--inline {
+    display: flex;
+    flex-wrap: wrap;
+
+    li:not(:first-child) {
+      margin-top: 0;
+    }
+
+    li:not(:last-child) {
+      margin-right: rem-calc($spacing--small);
+    }
+  }
+}
+
+[href*="mailto:"] {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: block;
+  max-width: 100%;
+}

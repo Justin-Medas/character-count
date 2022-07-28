@@ -1,0 +1,42 @@
+////
+/// @group components-micro
+/// Date styles.
+////
+
+.date-block {
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  .eyebrow + & {
+    @include global-spacing(small, margin-top);
+  }
+
+  .day-number {
+    font-size: rem-calc(32);
+    line-height: .9;
+
+    @include breakpoint(medium) {
+      font-size: rem-calc(60);
+    }
+  }
+
+  time + time {
+    display: flex;
+    align-items: center;
+
+    &::before {
+
+      @include global-spacing(small, margin-right margin-left);
+      width: rem-calc(24);
+      height: rem-calc(2);
+      content: '';
+      transform: translateY(-14px);
+      background-color: currentColor;
+    }
+  }
+
+  span {
+    display: block;
+  }
+}

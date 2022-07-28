@@ -1,0 +1,45 @@
+////
+/// @group elements
+/// Functions and mixins for elements.
+////
+
+///
+/// @param {Color} $link-color [$primary-color] - The color of the link text
+/// @example scss - Any color value or color variable is accepted
+///   .link-arrow {
+///     @include link-arrow($link-color: $primary-color);
+///   }
+///
+/// @param {Color} $icon-color [$primary-color] - The color of the arrow icon, applied to the pseudo-element
+/// @example scss - Any color value or color variable is accepted
+///   .link-arrow {
+///     @include link-arrow($icon-color: $primary-color);
+///   }
+///
+@mixin link-arrow(
+  $link-color: $primary-color,
+  $icon-color: $primary-color
+) {
+  color: $link-color;
+
+  &.btn {
+    padding-right: $spacing--small;
+  }
+
+  &::after {
+    font-family: $font-awesome;
+    position: absolute;
+    padding-left: $spacing--xsmall;
+    content: fa-content($fa-var-long-arrow-right);
+    font-weight: 300;
+    color: $icon-color;
+    transition: transform $primary-transition, opacity $primary-transition;
+  }
+
+  &:hover,
+  &:focus {
+    &::after {
+      transform: translateX(5px);
+    }
+  }
+}

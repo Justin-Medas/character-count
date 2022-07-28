@@ -1,0 +1,150 @@
+////
+/// @group components
+/// @type accordion
+/// Styles for accordions elements.
+////
+body {
+  display: block;
+}
+/// The animation duration, in ms. Should align with the value in accordion.js
+/// so that the border bottom doesn't appear too soon.
+/// @type Number
+$accordion-animation-duration: 400ms;
+
+// All accordions
+// --------------
+.accordion {
+  clear: both;
+
+  & + & {
+    margin-top: 1.75em;
+  }
+
+  &__button {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 1.25em 3.75em 1.25em 1.25em;
+    transition:
+      background-color $primary-transition,
+      color $primary-transition,
+      border 0 $primary-transition-function $accordion-animation-duration;
+    text-align: left;
+    border: .0625em solid $primary-color;
+
+    &:hover,
+    &:focus {
+      color: $text-color;
+      background-color: $white;
+
+      path {
+        fill: $text-color;
+      }
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    top: 0;
+    right: 1.75em;
+    bottom: 0;
+    width: 1.25em;
+    height: 1.25em;
+    margin: auto;
+  }
+
+  &__icon-path {
+    fill: $white;
+    transition:
+      fill $primary-transition,
+      transform $primary-transition;
+
+    &--vertical {
+      transform: scaleY(1);
+      transform-origin-y: 50%;
+    }
+  }
+
+  &__content {
+    @include clearfix;
+    display: none;
+    padding: 1.75em;
+    border: .0625em solid $primary-color;
+    border-top: 0;
+
+    // When JavaScript doesn't load for some reason, show the content.
+    :root:not(.jm-js) & {
+      display: block;
+    }
+  }
+
+  // Open state, or when JavaScript doesn't load for some reason.
+  &--open > &__button,
+  :root:not(.jm-js) &__button {
+    transition:
+      background-color $primary-transition,
+      color $primary-transition;
+    color: $text-color;
+    border-bottom: 0;
+    background-color: $white;
+
+    .accordion__icon-path {
+      fill: $text-color;
+
+      &--vertical {
+        transform: scaleY(0);
+      }
+    }
+  }
+
+  // Mobile-only accordions
+  // ----------------------
+  &--mobile {
+
+    .accordion {
+
+      &__button:disabled {
+        display: none;
+
+        + .accordion__content {
+          // We always want to show the content in desktop, regardless of the
+          // toggled state that happened in mobile.
+          display: block !important; // stylelint-disable-line
+          padding: 0;
+          border: 0;
+          background-color: transparent;
+        }
+      }
+    }
+  }
+}
+
+// accordions section
+// --------------
+.accordions {
+
+  .grid-container {
+    max-width: rem-calc(1000);
+  }
+}
+
+// WYSIWYG accordions section
+// --------------
+.wysiwyg .accordions {
+  @include global-spacing(default, margin-top);
+
+  // h2xl is default for recurring components
+  .section-heading__heading {
+    @include typeface(h2);
+    text-transform: none;
+  }
+
+  // intro-text by default
+  .section-heading__subheading {
+    @include typeface(p);
+  }
+
+  .grid-container {
+    padding: 0;
+  }
+}

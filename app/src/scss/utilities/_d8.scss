@@ -1,0 +1,49 @@
+////
+/// @group Drupal
+/// Functions and mixins for Drupal-specific elements.
+////
+
+/// Generates left float rules for objects in WYSIWYGs.
+@mixin align-left {
+  float: none;
+  margin: rem-calc($spacing--small 0);
+
+  @include breakpoint(medium) {
+    float: left;
+    margin: rem-calc($spacing--medium $spacing--xsmall $spacing--xsmall 0);
+  }
+
+  @include breakpoint(large) {
+    margin: rem-calc($spacing--default $spacing--small $spacing--small 0);
+  }
+}
+
+/// Generates right float rules for objects in WYSIWYGs.
+@mixin align-right {
+  float: none;
+  margin: rem-calc($spacing--xsmall 0);
+
+  @include breakpoint(medium) {
+    float: right;
+    margin: rem-calc($spacing--medium 0 $spacing--xsmall $spacing--xsmall);
+  }
+
+  @include breakpoint(large) {
+    margin: rem-calc($spacing--default 0 $spacing--small $spacing--small);
+  }
+}
+
+/// Generates centering rules for objects in WYSIWYGs.
+@mixin align-center {
+  display: table;
+  margin: rem-calc($spacing--xsmall) auto;
+}
+
+/// Generates rules for only showing items to a screen reader.
+@mixin show-for-sr {
+  position: absolute !important; // stylelint-disable-line
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  width: 1px;
+  height: 1px;
+}

@@ -1,0 +1,79 @@
+////
+/// @group components
+/// Styles for the cookie banner.
+////
+
+@keyframes slide-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 100%;
+  z-index: 10;
+  transition: transform 1s $bezier-ease--soft;
+  transform: translateY(100%);
+  max-width: rem-calc(1440);
+  padding: $spacing--xsmall;
+
+  &__inner {
+    background-color: $white;
+    padding: $spacing--medium;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.50);
+  }
+
+  .grid-x {
+    align-items: center;
+    @include breakpoint(medium) {
+      flex-wrap: nowrap;
+    }
+  }
+
+  .wysiwyg {
+    justify-content: space-between;
+    margin-top: -$spacing--xsmall;
+
+    @include breakpoint(medium) {
+      padding-right: $spacing--xsmall;
+    }
+  }
+
+  .flex-child-shrink,
+  .flex-child-grow {
+    margin-top: $spacing--xsmall;
+  }
+
+  .flex-child-grow {
+    @include breakpoint(medium) {
+      padding-right: $spacing--xsmall;
+    }
+  }
+
+  .btn {
+    margin: 0;
+  }
+
+  a:not(.btn) {
+    margin-right: $spacing--xsmall;
+  }
+}
+
+body:not(.cookie-panel-dismissed) {
+  .cookie-banner {
+    animation: slide-in;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-duration: 1s;
+    animation-delay: 3s;
+  }
+}
+

@@ -1,0 +1,68 @@
+////
+/// @group atoms
+/// Styles for section headings.
+////
+
+.section-heading {
+  --accent-color: #{$primary-color};
+  --text-color: #{$text-color};
+  color: var(--text-color);
+
+  &--line-accent &__heading {
+    position: relative;
+    width: 100%;
+
+    &::after {
+      position: absolute;
+      bottom: 0;
+      display: inline-block;
+      width: 100vw;
+      height: 1px;
+      margin-bottom: rem-calc(20);
+      margin-left: $spacing--3xsmall;
+      content: '';
+      transition: width $primary-animation-time $bezier-ease--soft, opacity $primary-transition-time $bezier-ease;
+      background-color: var(--accent-color);
+
+      @supports not (--css: variables) {
+        background-color: $primary-color;
+      }
+    }
+
+    &.jm-animate--ready::after {
+      width: 0;
+      transition: none;
+      opacity: 0;
+    }
+  }
+
+  .grid-x {
+    position: relative;
+    overflow: hidden;
+    align-items: flex-end;
+  }
+
+  .medium-auto {
+    margin-top: $spacing--xsmall;
+
+    @include breakpoint(medium) {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 0;
+    }
+
+    @include breakpoint(large) {
+      white-space: nowrap;
+    }
+  }
+
+  .btn {
+    margin-right: 0;
+  }
+
+  @supports not (--css: variables) {
+    color: $text-color;
+  }
+}

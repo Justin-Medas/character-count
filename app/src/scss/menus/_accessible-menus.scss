@@ -1,0 +1,86 @@
+////
+/// @group menus
+/// Styles for the accessible menu JavaScript.
+////
+
+.accessible-menu {
+
+  li {
+    position: relative;
+  }
+
+  .menu-item {
+
+    &__button {
+      position: absolute;
+      border: none;
+      background-color: transparent;
+
+      @include breakpoint(medium down) {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 2em;
+        height: 2em;
+        margin: 0;
+        padding: .375em;
+        color: transparent;
+        font-size: 1.5rem;
+
+        &::before {
+          display: inline-block;
+          width: 100%;
+          content: fa-content($fa-var-plus);
+          color: $violet;
+          font-family: $font-awesome;
+        }
+      }
+
+      @include breakpoint(large) {
+        position: absolute;
+        right: 0;
+        padding: 0;
+        transition: opacity $primary-transition;
+        opacity: 0;
+        font-size: 0;
+        background: none;
+        top: 50%;
+        transform: translateY(-50%);
+
+        &::before {
+          width: 100%;
+          content: fa-content($fa-var-chevron-circle-down);
+          color: $primary-color;
+          font-family: $font-awesome;
+          font-size: 16px;
+        }
+
+        &:focus {
+          opacity: 1;
+        }
+      }
+    }
+
+    &--open {
+
+      > ul {
+        visibility: visible;
+        height: auto;
+      }
+
+      @include breakpoint(medium down) {
+
+        > .menu-item__button::before {
+          content: fa-content($fa-var-minus);
+        }
+      }
+
+      @include breakpoint(large) {
+
+        > .menu-item__button::before {
+          content: fa-content($fa-var-chevron-circle-up);
+        }
+      }
+    }
+  }
+}
